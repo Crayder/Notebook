@@ -1,4 +1,5 @@
 # Sphere and cosine directionals.
+## Returns a point on a sphere give latitude and longitude angles. Also returns the cosine directionals needed to 'point' to the center.
 
     public OnRconCommand(cmd[])
     {
@@ -11,7 +12,7 @@
     				Float:y = Radius * floatcos(LAT) * floatsin(LON),
     				Float:z = Radius * floatsin(LAT);
     			
-    			printf("[%3.3f, %3.3f] %4.4f, %4.4f, %4.4f | %4.4f, %4.4f, %4.4f", LAT, LON, x, y, z, acos(x/Radius), acos(y/Radius), acos(z/Radius));
+    			printf("[%3.3f, %3.3f] %4.4f, %4.4f, %4.4f | %4.4f, %4.4f, %4.4f\n", LAT, LON, x, y, z, acos(x/Radius), acos(y/Radius), acos(z/Radius));
     		}
     	}
     	return 1;
