@@ -1,5 +1,5 @@
 # Sphere and cosine directionals (Incomplete).
-## Returns a point on a sphere give latitude and longitude angles. Also returns the cosine directionals needed to 'point' to the center.
+### _Returns a point on a sphere give latitude and longitude angles. Also returns the cosine directionals needed to 'point' to the center._
 
 ```pawn
 public OnRconCommand(cmd[])
@@ -19,7 +19,7 @@ public OnRconCommand(cmd[])
 ```
 
 # Generic Sphere Creation
-## Literally just creates the sphere.
+### _Literally just creates the sphere._
 
 ```pawn
 /*  R = Radius.
