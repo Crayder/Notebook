@@ -25,7 +25,8 @@ public OnRconCommand(cmd[])
 /*  R = Radius.
     pos? = Center position on map.
     hsep = Angle between latitude lines.
-    lsep = Angle between longitude lines.	*/
+    lsep = Angle between longitude lines.
+    deg = Degrees of the sphere (ex. 180 = hemisphere, 360 = sphere).	*/
 
 //
 new Float:x, Float:y, Float:z;
