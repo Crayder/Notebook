@@ -23,10 +23,11 @@ public OnRconCommand(cmd[])
 
 ```pawn
 /*  R = Radius.
-    pos? = Center position on map.  */
+    pos? = Center position on map.
+    hsep = Angle between latitude lines.
+    lsep = Angle between longitude lines.	*/
 
-// The angles are very generic and still need to be fixed, but the sphere is created exactly as it should be. The angles need to be more 'central'.
-
+//
 new Float:x, Float:y, Float:z;
 for(new Float:lon = -90.0; lon <= 90.0; lon += hsep)
 for(new Float:lat = 0.0, Float:angle = float(clamp(deg, 0, 360)); lat <= angle; lat += vsep)
