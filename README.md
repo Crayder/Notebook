@@ -1,23 +1,3 @@
-# Sphere and cosine directionals (Incomplete).
-### _Returns a point on a sphere give latitude and longitude angles. Also returns the cosine directionals needed to 'point' to the center._
-
-```pawn
-public OnRconCommand(cmd[])
-{
-	new cmdname[24], Float:Radius, Float:lat, Float:lon;
-	if(!sscanf(cmd, "s[24]fff", cmdname, Radius, lat, lon)) {
-		if(!strcmp(cmdname, "set")) {			
-			new	Float:x = floatsin(lat + 90.0, degrees) * floatcos(lon + 90.0, degrees);
-				Float:y = floatsin(lat + 90.0, degrees) * floatsin(lon + 90.0, degrees);
-				Float:z = floatcos(-lat + 90.0, degrees);
-			
-			printf("[%3.3f, %3.3f] %4.4f, %4.4f, %4.4f | %4.4f, %4.4f, %4.4f", lat, lon, x, y, z, 180.0 * x, 180.0 * y, -lat);
-		}
-	}
-	return 1;
-}
-```
-
 # Generic Sphere Creation
 ### _Literally just creates the sphere._
 
