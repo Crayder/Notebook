@@ -31,9 +31,9 @@ new Float:x, Float:y, Float:z;
 for(new Float:lon = -90.0; lon <= 90.0; lon += hsep)
 for(new Float:lat = 0.0, Float:angle = float(clamp(deg, 0, 360)); lat <= angle; lat += vsep)
 {
-	x = floatcos(lat, degrees) * floatcos(lon, degrees);
-	y = floatcos(lat, degrees) * floatsin(lon, degrees);
-	z = floatsin(lat, degrees);
+	x = floatsin(lat + 90.0, degrees) * floatcos(lon + 90.0, degrees);
+	y = floatsin(lat + 90.0, degrees) * floatsin(lon + 90.0, degrees);
+	z = floatcos(-lat + 90.0, degrees);
 	CreateObject(modelid, posx + (x * R), posy + (y * R), posz + (z * R), rx, ry, rz);
 }
 ```
