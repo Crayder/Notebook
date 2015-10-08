@@ -75,3 +75,26 @@ stock FloatRemainder(&Float:remainder, Float:value)
 		remainder = remainder + value;
 }
 ```
+```pawn
+new Float:x, Float:y, Float:z, Float:angle = float(clamp(deg, 0, 360)), Float:detrx, Float:detry, Float:detrz;
+for(new Float:lat = -90.0; lat <= 90.0; lat += hsep)
+for(new Float:lon = 0.0; lon <= angle; lon += vsep)//if(lat % 90.0 || lon == 0.0)
+{
+	x = floatsin(lat + 90.0, degrees) * floatcos(lon + 90.0, degrees);
+	y = floatsin(lat + 90.0, degrees) * floatsin(lon + 90.0, degrees);
+	z = floatcos(-lat + 90.0, degrees);
+	
+	EDIT_FloatRemainder((detrx = -(acos((-z) / 1.0) - 90.0), detrx), 360.0); 
+	EDIT_FloatRemainder((detrz = (atan2(-y, -x) - 90.0), detrz), 360.0);
+	
+	AttachPoint(x * radius, y * radius, z * radius, orx + detrx, ory + detry, orz + detrz - 180.0,
+		posx, posy, posz, rx, ry, rz,
+		x, y, z, detrx, detry, detrz
+	);
+	
+	AddOBMObject(playerid, modelid, posx + x, posy + y, posz + z, detrx, detry, detrz);
+}
+```
+Test 3 is the closest to what I want. It is mostly failing, but some of it is right. Here are the results, with the red ones being correct.
+
+[Imgur](http://i.imgur.com/KLkvXIP.png?1)
