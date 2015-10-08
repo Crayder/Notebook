@@ -21,7 +21,7 @@ for(new Float:lat = 0.0, Float:angle = float(clamp(deg, 0, 360)); lat <= angle; 
 ```
 
 # Test versions of the above
-
+#### _1_
 ```pawn
 new Float:x, Float:y, Float:z, Float:angle = float(clamp(deg, 0, 360)), Float:detrx, Float:detry, Float:detrz;
 for(new Float:lat = -90.0; lat <= 90.0; lat += hsep)
@@ -46,6 +46,7 @@ for(new Float:lon = 0.0; lon <= angle; lon += vsep) if(lat % 90.0 || lon == 0.0)
 	AddOBMObject(playerid, modelid, posx + x, posy + y, posz + z, detrx, detry, detrz);
 }
 ```
+#### _2_
 ```pawn
 public OnRconCommand(cmd[])
 {
@@ -75,6 +76,7 @@ stock FloatRemainder(&Float:remainder, Float:value)
 		remainder = remainder + value;
 }
 ```
+#### _3_
 ```pawn
 new Float:x, Float:y, Float:z, Float:angle = float(clamp(deg, 0, 360)), Float:detrx, Float:detry, Float:detrz;
 for(new Float:lat = -90.0; lat <= 90.0; lat += hsep)
