@@ -99,4 +99,4 @@ for(new Float:lon = 0.0; lon <= angle; lon += vsep)//if(lat % 90.0 || lon == 0.0
 ```
 Test 3 is the closest to what I want. It is mostly failing, but some of it is right. Here are the results, with the red ones being correct.
 
-[Imgur](http://i.imgur.com/KLkvXIP.png?1)
+![Imgur](http://i.imgur.com/KLkvXIP.png?1)
