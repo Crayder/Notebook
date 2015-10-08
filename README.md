@@ -20,7 +20,7 @@ for(new Float:lat = 0.0, Float:angle = float(clamp(deg, 0, 360)); lat <= angle; 
 }
 ```
 
-# Test version of the above
+# Test versions of the above
 
 ```pawn
 new Float:x, Float:y, Float:z, Float:angle = float(clamp(deg, 0, 360)), Float:detrx, Float:detry, Float:detrz;
@@ -44,5 +44,34 @@ for(new Float:lon = 0.0; lon <= angle; lon += vsep) if(lat % 90.0 || lon == 0.0)
 	);
 	
 	AddOBMObject(playerid, modelid, posx + x, posy + y, posz + z, detrx, detry, detrz);
+}
+```
+```pawn
+public OnRconCommand(cmd[])
+{
+	new cmdname[24], Float:Radius, Float:lat, Float:lon;
+	if(!sscanf(cmd, "s[24]fff", cmdname, Radius, lat, lon)) {
+		if(!strcmp(cmdname, "set")) {
+			new	Float:x = floatsin(lat + 90.0, degrees) * floatcos(lon + 90.0, degrees),
+				Float:y = floatsin(lat + 90.0, degrees) * floatsin(lon + 90.0, degrees),
+				Float:z = floatcos(-lat + 90.0, degrees);
+			
+			FloatRemainder((lon = -(acos((-z) / Radius) - 90.0), lon), 360.0); 
+			FloatRemainder((lat = (atan2(-y, -x) - 90.0), lat), 360.0);
+
+			printf("%4.4f, %4.4f, %4.4f | %4.4f, %4.4f\n",
+				Radius * x, Radius * y, Radius * z,
+				lat, lon);
+		}
+	}
+	return 1;
+}
+
+stock FloatRemainder(&Float:remainder, Float:value)
+{
+	while(remainder >= value)
+		remainder = remainder - value;
+	while(remainder < 0.0)
+		remainder = remainder + value;
 }
 ```
