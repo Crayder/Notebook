@@ -82,10 +82,9 @@ new Float:x, Float:y, Float:z, Float:angle = float(clamp(deg, 0, 360)), Float:de
 for(new Float:lat = -90.0; lat <= 90.0; lat += hsep)
 for(new Float:lon = 0.0; lon <= angle; lon += vsep)//if(lat % 90.0 || lon == 0.0)
 {
-	lon *= -1;
-	x = -(floatcos(lat, degrees) * floatsin(lon, degrees));
-	y = floatcos(lat, degrees) * floatcos(lon, degrees);
-	z = floatsin(lat, degrees);
+	x = floatsin(lat + 90.0, degrees) * floatcos(lon + 90.0, degrees);
+	y = floatsin(lat + 90.0, degrees) * floatsin(lon + 90.0, degrees);
+	z = floatcos(-lat + 90.0, degrees);
 	
 	EDIT_FloatRemainder((detrx = -(acos((-z) / 1.0) - 90.0), detrx), 360.0); 
 	EDIT_FloatRemainder((detrz = (atan2(-y, -x) - 90.0), detrz), 360.0);
@@ -101,3 +100,11 @@ for(new Float:lon = 0.0; lon <= angle; lon += vsep)//if(lat % 90.0 || lon == 0.0
 Test 3 is the closest to what I want. It is mostly failing, but some of it is right. Here are the results, with the red ones being correct.
 
 ![Imgur](http://i.imgur.com/KLkvXIP.png?1)
+
+New algorithm (simpler than expected, may be the fix!)
+```pawn
+	lon *= -1;
+	x = -(floatcos(lat, degrees) * floatsin(lon, degrees));
+	y = floatcos(lat, degrees) * floatcos(lon, degrees);
+	z = floatsin(lat, degrees);
+```
