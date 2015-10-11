@@ -82,9 +82,10 @@ new Float:x, Float:y, Float:z, Float:angle = float(clamp(deg, 0, 360)), Float:de
 for(new Float:lat = -90.0; lat <= 90.0; lat += hsep)
 for(new Float:lon = 0.0; lon <= angle; lon += vsep)//if(lat % 90.0 || lon == 0.0)
 {
-	x = floatsin(lat + 90.0, degrees) * floatcos(lon + 90.0, degrees);
-	y = floatsin(lat + 90.0, degrees) * floatsin(lon + 90.0, degrees);
-	z = floatcos(-lat + 90.0, degrees);
+	lon *= -1;
+	x = -(floatcos(lat, degrees) * floatsin(lon, degrees));
+	y = floatcos(lat, degrees) * floatcos(lon, degrees);
+	z = floatsin(lat, degrees);
 	
 	EDIT_FloatRemainder((detrx = -(acos((-z) / 1.0) - 90.0), detrx), 360.0); 
 	EDIT_FloatRemainder((detrz = (atan2(-y, -x) - 90.0), detrz), 360.0);
