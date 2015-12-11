@@ -4609,6 +4609,14 @@ static InflictDamage(playerid, Float:amount, issuerid = INVALID_PLAYER_ID, weapo
 		}
 	#endif
 	
+	new Float:armourDamage = s_DamageArmour[weaponid][e_ArmourRatio] * amount,
+		Float:healthDamage = s_DamageArmour[weaponid][e_HealthRatio] * amount;
+	if (armourDamage > s_PlayerArmour[playerid])
+	{
+		healthDamage += s_DamageArmour[weaponid][e_RedistRatio] * (armourDamage - s_PlayerArmour[playerid]);
+		armourDamage = s_PlayerArmour[playerid];
+	}
+	
 	if (!ignore_armour && weaponid != WEAPON_COLLISION && weaponid != WEAPON_DROWN && weaponid != WEAPON_CARPARK && (!s_DamageArmourToggle[0] || (s_DamageArmour[weaponid][e_ArmourRatio] && (!s_DamageArmourToggle[1] || (!s_DamageArmour[weaponid][e_TorsoOnly] || bodypart == 3))))) {
 		if (amount <= 0.0) {
 			amount = s_PlayerHealth[playerid] + s_PlayerArmour[playerid];
