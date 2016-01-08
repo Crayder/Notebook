@@ -1,0 +1,30 @@
+#define MAX_POLY_POINTS 32
+
+stock bool:IsPointInPolygon(Float:x, Float:y, {_,Float}:...) {
+	new i, j,
+		bool:c = false,
+		sides = (numargs() - 2) / 2,
+		Float:vX[MAX_POLY_POINTS], Float:vY[MAX_POLY_POINTS];
+
+	if(numargs() & 0b1 || MAX_POLY_POINTS <= sides || sides < 3)
+		return printf("\a\aError: Invalid IsPointInPolygon parameters.", sides), false;
+	
+	for (i = 0; i < sides; i += 1) {
+		j = i * 2;
+		vX[i] = Float:getarg(j + 2);
+		vY[i] = Float:getarg(j + 3);
+	}
+	
+	for (i = 0; i < sides; i++) {
+		if(i == (sides - 1)){
+			j = 0;
+		}
+		else {
+			j = i + 1;
+		}
+
+		if((vY[i] > y) != (vY[j] > y) && (x < ((((vX[j] - vX[i]) / (vY[j] - vY[i])) * (y - vY[i])) + vX[i])))
+			c = !c;
+	}
+	return c;
+}
