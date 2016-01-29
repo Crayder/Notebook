@@ -1,0 +1,75 @@
+Unknown MC ID: 9                 Still Water
+Unknown MC ID: 20                Glass
+Unknown MC ID: 31                Tall Grass
+Unknown MC ID: 43                Double Stone Slab
+Unknown MC ID: 44                Stone Slab
+Unknown MC ID: 85                Wooden Fence
+Unknown MC ID: 125               Double Wooden Slab
+Unknown MC ID: 126               Wooden Slab
+Unknown MC ID: 134 135 136 163 164     Wooden Stair
+Unknown MC ID: 155               Quartz
+Unknown MC ID: 156               Quartz Stair
+Unknown MC ID: 159               Stained Clay
+Unknown MC ID: 160               Glass Pane
+
+11 still lava
+
+123, 124 wicker lamp
+
+171 carpet
+173 coal block
+172 hard clay
+174 ice
+
+102 glass pane
+
+98 stone bricks
+45 brick wall
+
+57 solid diamond
+42 solid iron
+
+56 diamond ore
+16 coal ore
+15 iron ore
+14 copper ore
+
+48 limestone
+
+82 clay
+
+85 wood fence
+138 cobble wall
+
+
+
+107 wooden gate
+146 chest
+
+96 wood trap door
+167 iron trap door
+
+109 stone brick stair
+108 brick stair
+
+106 vines
+
+61 stove
+67 cobble stair
+65 ladder
+
+54 chest
+
+50 torch
+
+53 wood stair
+
+
+71 iron door
+64 wood door
+
+70 stone pressure
+72 wood pressure
+
+
+
