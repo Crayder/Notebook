@@ -1,0 +1,8 @@
+	new tmpstr[100], Mins, Secs;
+	divmod(time, 60, Mins, Secs);
+	if(Mins>0 && Secs==0)
+		format(tmpstr, sizeof(tmpstr), "** %s is no longer AFK after %d minutes. **", GetPlayerNameReturn(playerid, true), Mins);
+	else if(Mins>0 && Secs!=0)
+		format(tmpstr, sizeof(tmpstr), "** %s is no longer AFK after %d minutes and %d seconds. **", GetPlayerNameReturn(playerid, true), Mins, Secs);
+	else if(Mins==0)
+		format(tmpstr, sizeof(tmpstr), "** %s is no longer AFK after %d seconds. **", GetPlayerNameReturn(playerid, true), Secs);
