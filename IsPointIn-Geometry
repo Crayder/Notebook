@@ -1,0 +1,56 @@
+// Credits to JernejL (even though it is just a distance calculation, I still straight up copied it).
+stock Float:Magnitude(Float:Point1[3], Float:Point2[3]) {
+    new Float:Vector[3];
+    
+    Vector[0] = Point2[0] - Point1[0];
+    Vector[1] = Point2[1] - Point1[1];
+    Vector[2] = Point2[2] - Point1[2];
+    
+    return floatsqroot( Vector[0] * Vector[0] + Vector[1] * Vector[1] + Vector[2] * Vector[2] );
+}
+
+// Credits to JernejL.
+stock Float:DistanceFromPointToLine(Float:Point[3], Float:LineStart[3], Float:LineEnd[3], Float:Intersection[3]) {
+    new Float:LineMag, Float:U;
+    
+    LineMag = Magnitude(LineEnd, LineStart);
+    LineMag *= LineMag;
+    
+    if (LineMag < 0.001)
+    	return -1.0;
+    
+    U = (((Point[0] - LineStart[0]) * (LineEnd[0] - LineStart[0])) +
+		 ((Point[1] - LineStart[1]) * (LineEnd[1] - LineStart[1])) +
+		 ((Point[2] - LineStart[2]) * (LineEnd[2] - LineStart[2]))) / LineMag;
+    
+    if (U < 0.0 || U > 1.0)
+        return -1.0;
+    
+    Intersection[0] = LineStart[0] + U * (LineEnd[0] - LineStart[0]);
+    Intersection[1] = LineStart[1] + U * (LineEnd[1] - LineStart[1]);
+    Intersection[2] = LineStart[2] + U * (LineEnd[2] - LineStart[2]);
+    
+    return Magnitude(Intersection, Point);
+}
+
+stock bool:IsPointInCone(Float:test_point[3], Float:base_center[3], Float:base_radius, Float:top_center[3], Float:top_radius) {
+	new Float:cylinder_length = Magnitude(base_center, top_center),
+		Float:intersection[3],
+		Float:distance = DistanceFromPointToLine(test_point, base_center, top_center, intersection),
+		Float:radius = (Magnitude(intersection, base_center) / cylinder_length * top_radius) + (Magnitude(intersection, top_center) / cylinder_length * base_radius);
+	
+	return (d != -1.0 && d <= r);
+}
+
+stock bool:IsPointInCylinder(Float:test_point[3], Float:base_center[3], Float:top_center[3], Float:radius) {
+	new Float:cylinder_length = Magnitude(base_center, top_center),
+		Float:intersection[3],
+		Float:distance = DistanceFromPointToLine(test_point, base_center, top_center, intersection),
+		Float:radius = (Magnitude(intersection, base_center) / cylinder_length * radius) + (Magnitude(intersection, top_center) / cylinder_length * radius);
+	
+	return (d != -1.0 && d <= r);
+}
+
+stock bool:IsPointInSphere(Float:test_point[3], Float:center[3], Float:radius) {
+	return (Magnitude(center, test_point) <= r);
+}
